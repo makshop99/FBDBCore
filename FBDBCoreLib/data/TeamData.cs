@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FDB_Analysis.code.data
+namespace FBDBCoreLib.code.data
 {
     /// <summary>
     /// this class includes all stats data for a nfl team

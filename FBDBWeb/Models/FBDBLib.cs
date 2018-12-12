@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using FBDBLib.data;
-using FBDBLib.view;
+using FBDBCoreLib.data;
+using FBDBCoreLib.view;
 namespace FBDBWeb.Models
 {
     public class WebModel
     {
         public string analyseGame(string sAwayTeam, string sHomeTeam)
         {
-            FBDBLibInterface oModel = new FBDBLibInterface();
+            FBDBCoreLibInterface oModel = new FBDBCoreLibInterface();
             FileProp oPaths = new FileProp();
 
 
@@ -28,9 +28,9 @@ namespace FBDBWeb.Models
         }
 
         public List<GameProp> analyseGameday(string sGameday)
-        { 
+        {
             // initializing the model
-            FBDBLibInterface oModel = new FBDBLibInterface();
+            FBDBCoreLibInterface oModel = new FBDBCoreLibInterface();
             FileProp oPaths = new FileProp();
             string sOffenseFile = "https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
             string sDefenseFile = "https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";

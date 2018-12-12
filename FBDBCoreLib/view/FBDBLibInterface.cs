@@ -1,5 +1,5 @@
-﻿using FBDBLib.controller;
-using FBDBLib.data;
+﻿using FBDBCoreLib.controller;
+using FBDBCoreLib.data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 // added a comment for testing azure devops ci build.
 // and another comment added.
-namespace FBDBLib.view
+namespace FBDBCoreLib.view
 {
-    public class FBDBLibInterface
+    public class FBDBCoreLibInterface
     {
         private FTDBLibController oController;
 

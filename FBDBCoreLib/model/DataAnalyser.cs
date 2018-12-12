@@ -1,12 +1,12 @@
-﻿using FBDBLib.data;
-using FDB_Analysis.code.data;
+﻿using FBDBCoreLib.data;
+using FBDBCoreLib.code.data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FBDBLib.model
+namespace FBDBCoreLib.model
 {
     public class DataAnalyser
     {

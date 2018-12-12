@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FBDBLib.data
+namespace FBDBCoreLib.data
 {
     /// <summary>
     ///  this class includes all props for a game

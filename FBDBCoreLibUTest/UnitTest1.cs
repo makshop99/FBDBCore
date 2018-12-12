@@ -1,5 +1,6 @@
 using System;
-using FBDBLib.data;
+using FBDBCoreLib.data;
+using FBDBCoreLib.view;
 using Xunit;
 
 namespace FBDBCoreLibUTest
@@ -14,7 +15,7 @@ namespace FBDBCoreLibUTest
         //[Fact]
         public void FBDBLibInterface_init_FilesOk()
         {
-            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
             FileProp oData = new FileProp();
             oData.Offense = sOffenseFile;
             oData.Defense = sDefenseFile;
@@ -28,7 +29,7 @@ namespace FBDBCoreLibUTest
         [Fact]
         public void FBDBLibInterface_init_ScheduleFileEmpty()
         {
-            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
             FileProp oData = new FileProp();
             oData.Offense = sOffenseFile;
             oData.Defense = sDefenseFile;
@@ -42,7 +43,7 @@ namespace FBDBCoreLibUTest
         [Fact]
         public void FBDBLibInterface_init_OffenseFilesEmpty()
         {
-            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
             FileProp oData = new FileProp();
             oData.Offense = @"";
             oData.Defense = sDefenseFile;
@@ -56,7 +57,7 @@ namespace FBDBCoreLibUTest
         [Fact]
         public void FBDBLibInterface_init_DefenseFileEmpty()
         {
-            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
             FileProp oData = new FileProp();
             oData.Offense = sOffenseFile;
             oData.Defense = @"";
@@ -72,7 +73,7 @@ namespace FBDBCoreLibUTest
         [Fact]
         public void FBDBLibInterface_init_URLsOk()
         {
-            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
             FileProp oData = new FileProp();
             oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
             oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
@@ -86,7 +87,7 @@ namespace FBDBCoreLibUTest
         [Fact]
         public void FBDBLibInterface_init_DefensURLEmpty()
         {
-            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
             FileProp oData = new FileProp();
             oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
             oData.Defense = @"";
@@ -100,7 +101,7 @@ namespace FBDBCoreLibUTest
         [Fact]
         public void FBDBLibInterface_init_OffensURLEmpty()
         {
-            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
             FileProp oData = new FileProp();
             oData.Offense = @"";
             oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
@@ -114,7 +115,7 @@ namespace FBDBCoreLibUTest
         [Fact]
         public void FBDBLibInterface_init_ScheduleURLEmpty()
         {
-            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
             FileProp oData = new FileProp();
             oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
             oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
@@ -139,7 +140,7 @@ namespace FBDBCoreLibUTest
     [Fact]
     public void FBDBLibInterface_game_OK()
     {
-        FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+        FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
         FileProp pPaths = new FileProp();
         pPaths.Offense = sOffenseFile;
         pPaths.Defense = sDefenseFile;
@@ -157,7 +158,7 @@ namespace FBDBCoreLibUTest
     [Fact]
     public void FBDBLibInterface_game_HometeamEmpty()
     {
-        FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+        FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
         FileProp pPaths = new FileProp();
         pPaths.Offense = sOffenseFile;
         pPaths.Defense = sDefenseFile;
@@ -175,7 +176,7 @@ namespace FBDBCoreLibUTest
     [Fact]
     public void FBDBLibInterface_game_AwayteamEmpty()
     {
-        FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+        FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
         FileProp pPaths = new FileProp();
         pPaths.Offense = sOffenseFile;
         pPaths.Defense = sDefenseFile;
@@ -193,7 +194,7 @@ namespace FBDBCoreLibUTest
     [Fact]
     public void FBDBLibInterface_game_NoData()
     {
-        FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+        FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
         FileProp pPaths = new FileProp();
         pPaths.Offense = sOffenseFile;
         pPaths.Defense = sDefenseFile;

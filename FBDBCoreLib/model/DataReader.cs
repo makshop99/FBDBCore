@@ -1,4 +1,4 @@
-﻿using FBDBLib.data;
+﻿using FBDBCoreLib.data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FBDBLib.model
+namespace FBDBCoreLib.model
 {
     /// <summary>
     /// this class reads all raw data needed. this includes offense stats, defense stats and gameday information.

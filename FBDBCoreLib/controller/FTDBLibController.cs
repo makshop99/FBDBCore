@@ -1,13 +1,13 @@
-﻿using FBDBLib.data;
-using FBDBLib.model;
-using FDB_Analysis.code.data;
+﻿using FBDBCoreLib.data;
+using FBDBCoreLib.model;
+using FBDBCoreLib.code.data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FBDBLib.controller
+namespace FBDBCoreLib.controller
 {
     public class FTDBLibController
     {
