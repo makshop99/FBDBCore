@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBDBCoreLib", "FBDBCoreLib\FBDBCoreLib.csproj", "{3B8596E4-A224-46F4-AA38-EAA137FA2B18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBDBWeb", "FBDBWeb\FBDBWeb.csproj", "{F26CE847-B932-4DDD-B735-900EE41CDBE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBDBCoreLibUTest", "FBDBCoreLibUTest\FBDBCoreLibUTest.csproj", "{3745B6CE-B441-4E0F-A1CB-0A290D011F46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B8596E4-A224-46F4-AA38-EAA137FA2B18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B8596E4-A224-46F4-AA38-EAA137FA2B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B8596E4-A224-46F4-AA38-EAA137FA2B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B8596E4-A224-46F4-AA38-EAA137FA2B18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F26CE847-B932-4DDD-B735-900EE41CDBE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F26CE847-B932-4DDD-B735-900EE41CDBE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F26CE847-B932-4DDD-B735-900EE41CDBE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F26CE847-B932-4DDD-B735-900EE41CDBE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3745B6CE-B441-4E0F-A1CB-0A290D011F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3745B6CE-B441-4E0F-A1CB-0A290D011F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3745B6CE-B441-4E0F-A1CB-0A290D011F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3745B6CE-B441-4E0F-A1CB-0A290D011F46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

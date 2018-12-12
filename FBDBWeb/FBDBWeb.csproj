@@ -28,4 +28,7 @@
     <None Include="wwwroot\data\offense.htm" />
     <None Include="wwwroot\data\schedule.htm" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FBDBCoreLib\FBDBCoreLib.csproj" />
+  </ItemGroup>
 </Project>
