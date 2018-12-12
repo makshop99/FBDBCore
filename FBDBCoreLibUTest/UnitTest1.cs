@@ -12,6 +12,7 @@ namespace FBDBCoreLibUTest
         private string sScheduleFile = @"C:\Users\PeterPiper07\workspace\CSharp\FBDBSolution\schedule.htm";
 
         #region init tests - local paths
+        /*
         //[Fact]
         public void FBDBLibInterface_init_FilesOk()
         {
@@ -25,6 +26,7 @@ namespace FBDBCoreLibUTest
             int iReturn = oPruefling.init(oData);
             Assert.Equal(iReturn, 0);
         }
+        */
 
         [Fact]
         public void FBDBLibInterface_init_ScheduleFileEmpty()
@@ -78,10 +80,10 @@ namespace FBDBCoreLibUTest
             oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
             oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
             oData.Gameday = @"https://www.footballdb.com/games/index.html";
-
+            int iSoll = 0;
             // test with local paths OK
             int iReturn = oPruefling.init(oData);
-            Assert.Equal(iReturn, 0);
+            Assert.Equal(iReturn, iSoll);
         }
 
         [Fact]
