@@ -144,7 +144,7 @@ namespace FBDBCoreLibUTest
         oData.Gameday = @"https://www.footballdb.com/games/index.html";
         int iReturn = oPruefling.init(oData);
 
-        int iSoll = 100;
+        int iSoll = 200;
         GameProp oReturn = oPruefling.getGame("Detroit Lions", "Chicago Bears");
         int iIst = Convert.ToInt32(oReturn.AwayScore) + Convert.ToInt32(oReturn.HomeScore);
         Assert.Equal(iIst, iSoll);
