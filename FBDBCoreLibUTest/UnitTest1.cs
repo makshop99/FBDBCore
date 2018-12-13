@@ -130,87 +130,76 @@ namespace FBDBCoreLibUTest
         #endregion
 
 
-    }
 
-
-    /*
-
-    #region gameday tests
-    #endregion
 
     #region game tests
     [Fact]
     public void FBDBLibInterface_game_OK()
     {
+        // init Lib Interface
         FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-        FileProp pPaths = new FileProp();
-        pPaths.Offense = sOffenseFile;
-        pPaths.Defense = sDefenseFile;
-        pPaths.Gameday = sScheduleFile;
-        int iReturn = oPruefling.init(pPaths);
+        FileProp oData = new FileProp();
+        oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+        oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+        oData.Gameday = @"https://www.footballdb.com/games/index.html";
+        int iReturn = oPruefling.init(oData);
 
-        GameProp oData = new GameProp();
-        oData.Home = "Detroit Lions";
-        oData.Away = "Atlanta Falcons";
-        string sSoll = "stats of a single game";
-        string sIst = oPruefling.getGame(oData);
-        Assert.Equal(sIst, sSoll);
+        int iSoll = 100;
+        GameProp oReturn = oPruefling.getGame("Detroit Lions", "Chicago Bears");
+        int iIst = Convert.ToInt32(oReturn.AwayScore) + Convert.ToInt32(oReturn.HomeScore);
+        Assert.Equal(iIst, iSoll);
     }
+
+    
 
     [Fact]
     public void FBDBLibInterface_game_HometeamEmpty()
     {
+        // init Lib Interface
         FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-        FileProp pPaths = new FileProp();
-        pPaths.Offense = sOffenseFile;
-        pPaths.Defense = sDefenseFile;
-        pPaths.Gameday = sScheduleFile;
-        int iReturn = oPruefling.init(pPaths);
-
-        GameProp oData = new GameProp();
-        oData.Home = "";
-        oData.Away = "Atlanta Falcons";
-        string sSoll = "error: no hometeam passed";
-        string sIst = oPruefling.getGame(oData);
-        Assert.Equal(sIst, sSoll);
+        FileProp oData = new FileProp();
+        oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+        oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+        oData.Gameday = @"https://www.footballdb.com/games/index.html";
+        int iReturn = oPruefling.init(oData);
+        
+        GameProp oIst = oPruefling.getGame("Atlanta Falcons", ""); 
+        GameProp oSoll = null;
+        Assert.Equal(oIst, oSoll);
     }
 
     [Fact]
     public void FBDBLibInterface_game_AwayteamEmpty()
     {
+        // init Lib Interface
         FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-        FileProp pPaths = new FileProp();
-        pPaths.Offense = sOffenseFile;
-        pPaths.Defense = sDefenseFile;
-        pPaths.Gameday = sScheduleFile;
-        int iReturn = oPruefling.init(pPaths);
+        FileProp oData = new FileProp();
+        oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+        oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+        oData.Gameday = @"https://www.footballdb.com/games/index.html";
+        int iReturn = oPruefling.init(oData);
 
-        GameProp oData = new GameProp();
-        oData.Home = "Detroit Lions";
-        oData.Away = "";
-        string sSoll = "error: no awayteam passed";
-        string sIst = oPruefling.getGame(oData);
-        Assert.Equal(sIst, sSoll);
-    }
+        GameProp oIst = oPruefling.getGame("", "Atlanta Falcons");
+        GameProp oSoll = null;
+        Assert.Equal(oIst, oSoll);
 
+        }
+    
     [Fact]
     public void FBDBLibInterface_game_NoData()
     {
+        // init Lib Interface
         FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-        FileProp pPaths = new FileProp();
-        pPaths.Offense = sOffenseFile;
-        pPaths.Defense = sDefenseFile;
-        pPaths.Gameday = sScheduleFile;
-        int iReturn = oPruefling.init(pPaths);
-
-        string sSoll = "error: no gameday passed";
-        string sIst = oPruefling.getGame(null);
-        Assert.Equal(sIst, sSoll);
+        FileProp oData = new FileProp();
+        oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+        oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+        oData.Gameday = @"https://www.footballdb.com/games/index.html";
+        int iReturn = oPruefling.init(oData);
+        
+        GameProp oIst = oPruefling.getGame("", "");
+        GameProp oSoll = null;
+        Assert.Equal(oIst, oSoll);
     }
     #endregion
-
-    */
-
-
-
+    }
 }
