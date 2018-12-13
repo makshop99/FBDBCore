@@ -1,63 +1,72 @@
 ﻿@{
     ViewData["Title"] = "GameAnalysis";
+    GameProp oData = ViewData["Result"] as GameProp;
+
+
+    string sResult = oData.Away + " at " + oData.Home + " - " + oData.AwayScore + ":" + oData.HomeScore;
+    sResult += "(" + oData.ScoreDiff + ")";
+
+
 }
 
-<h1>Analysing finished</h1>
+<h1>Game Analysis</h1>
 <hr />
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Result"]</h3>
+<h1>@sResult</h1>
 
-<h2>Hometeam</h2>
+<h2>Offense</h2>
 <h3>
     <table>
         <tr>
-            <td>Value 1</td>
-            <td>Value 2</td>
-            <td>Value 3</td>
-            <td>Value 4</td>
-            <td>Value 5</td>
+            <th>Team</th>
+            <th>Passing per Game</th>
+            <th>Rushing per Game</th>
+            <th>Points per Game</th>
+            <th>Offense Score</th>
+        </tr>
+
+        <tr>
+            <td>@oData.Away</td>
+            <td>@oData.AwayOffensePassing</td>
+            <td>@oData.AwayOffenseRushsing</td>
+            <td>@oData.AwayOffensePoints</td>
+            <td>@oData.AwayScoreOffense</td>
         </tr>
         <tr>
-            <td>Value 1</td>
-            <td>Value 2</td>
-            <td>Value 3</td>
-            <td>Value 4</td>
-            <td>Value 5</td>
+            <td>@oData.Home</td>
+            <td>@oData.HomeOffensePassing</td>
+            <td>@oData.HomeOffenseRushsing</td>
+            <td>@oData.HomeOffensePoints</td>
+            <td>@oData.HomeScoreOffense</td>
         </tr>
-        <tr>
-            <td>Value 1</td>
-            <td>Value 2</td>
-            <td>Value 3</td>
-            <td>Value 4</td>
-            <td>Value 5</td>
-        </tr>
+
     </table>
-</h3>
-    <hr />
+</h3><hr />
 
-    <h2>Awayteam</h2>
+<h2>Defense</h2>
 <h3>
     <table>
         <tr>
-            <td>Value 1</td>
-            <td>Value 2</td>
-            <td>Value 3</td>
-            <td>Value 4</td>
-            <td>Value 5</td>
+            <th>Team</th>
+            <th>Passing per Game</th>
+            <th>Rushing per Game</th>
+            <th>Points per Game</th>
+            <th>Defense Score</th>
+        </tr>
+
+        <tr>
+            <td>@oData.Away</td>
+            <td>@oData.AwayDefensePassing</td>
+            <td>@oData.AwayDefenseRushsing</td>
+            <td>@oData.AwayDefensePoints</td>
+            <td>@oData.AwayScoreDefense</td>
         </tr>
         <tr>
-            <td>Value 1</td>
-            <td>Value 2</td>
-            <td>Value 3</td>
-            <td>Value 4</td>
-            <td>Value 5</td>
+            <td>@oData.Home</td>
+            <td>@oData.HomeDefensePassing</td>
+            <td>@oData.HomeDefenseRushsing</td>
+            <td>@oData.HomeDefensePoints</td>
+            <td>@oData.HomeScoreDefense</td>
         </tr>
-        <tr>
-            <td>Value 1</td>
-            <td>Value 2</td>
-            <td>Value 3</td>
-            <td>Value 4</td>
-            <td>Value 5</td>
-        </tr>
+
     </table>
 </h3>

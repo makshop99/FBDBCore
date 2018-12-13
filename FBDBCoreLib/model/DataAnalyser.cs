@@ -23,18 +23,28 @@ namespace FBDBCoreLib.model
         /// <param name="tdAway"></param>
         /// <param name="tdHome"></param>
         /// <returns></returns>
+        /// <changes>
+        /// 13.12.18
+        /// implementation of the story 420
+        /// https://makbuch.visualstudio.com/FBDB%20App/_workitems/edit/420
+        /// </changes>     
         public GameProp analyseGame(TeamData tdAway, TeamData tdHome)
         {
             GameProp oReturn = new GameProp();
 
             // calculate offense
             Double dHome = calculateOffense(tdAway, tdHome);
+            oReturn.HomeScoreOffense = dHome.ToString();
             Double dAway = iOffenseMax - dHome;
+            oReturn.AwayScoreOffense = dAway.ToString();
 
             // calcutale defense
             Double idummy = calculateDefense(tdAway, tdHome);
             dHome += idummy;
             dAway += iDefenseMax - idummy;
+            oReturn.HomeScoreDefense = idummy.ToString();
+            oReturn.AwayScoreDefense = (iDefenseMax - idummy).ToString();
+
 
             // homefield advantage (deactivated)
             // dHome += 10;
@@ -47,6 +57,20 @@ namespace FBDBCoreLib.model
             oReturn.Home = tdHome.TeamName;
             oReturn.HomeScore = iHome.ToString();
             oReturn.ScoreDiff = (iHome - iAway).ToString();
+
+            // stats 
+            oReturn.AwayOffensePassing = tdAway.OffensePssG;
+            oReturn.AwayOffenseRushsing = tdAway.OffenseRshG;
+            oReturn.AwayOffensePoints = tdAway.OffensePntG;
+            oReturn.AwayDefensePassing = tdAway.DefensePssG;
+            oReturn.AwayDefenseRushsing = tdAway.DefenseRshG;
+            oReturn.AwayDefensePoints = tdAway.DefensePntG;
+            oReturn.HomeOffensePassing = tdHome.OffensePssG;
+            oReturn.HomeOffenseRushsing = tdHome.OffenseRshG;
+            oReturn.HomeOffensePoints = tdHome.OffensePntG;
+            oReturn.HomeDefensePassing = tdHome.DefensePssG;
+            oReturn.HomeDefenseRushsing = tdHome.DefenseRshG;
+            oReturn.HomeDefensePoints = tdHome.DefensePntG;
 
             return oReturn;
         }

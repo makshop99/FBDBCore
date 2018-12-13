@@ -6,7 +6,7 @@ namespace FBDBWeb.Models
 {
     public class WebModel
     {
-        public string analyseGame(string sAwayTeam, string sHomeTeam)
+        public GameProp analyseGame(string sAwayTeam, string sHomeTeam)
         {
             FBDBCoreLibInterface oModel = new FBDBCoreLibInterface();
             FileProp oPaths = new FileProp();
@@ -23,7 +23,7 @@ namespace FBDBWeb.Models
             oModel.init(oPaths);
             GameProp oResult = oModel.getGame(sAwayTeam, sHomeTeam);
 
-            return createGameOutput(oResult);
+            return oResult;
 
         }
 

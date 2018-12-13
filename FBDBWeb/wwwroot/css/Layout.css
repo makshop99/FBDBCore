@@ -8,6 +8,22 @@
     background: #fffbf0
 }
 
+table, th, td 
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td 
+{
+    padding: 5px;
+}
+
+th 
+{
+    text-align: left;
+}
+
 #HeaderArea {
     BACKGROUND-COLOR: #010101;
     BORDER-RIGHT: 0px;
@@ -124,3 +140,4 @@ h3 {
     padding: 6px 10px 10px 10px;
     background: #fffbf0
 }
+
