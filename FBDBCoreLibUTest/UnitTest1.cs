@@ -1,5 +1,6 @@
 using System;
 using FBDBCoreLib.data;
+using FBDBCoreLib.exceptions;
 using FBDBCoreLib.view;
 using Xunit;
 
@@ -7,199 +8,156 @@ namespace FBDBCoreLibUTest
 {
     public class UnitTest1
     {
-        private string sOffenseFile = @"C:\Users\PeterPiper07\workspace\CSharp\FBDBSolution\offense.htm";
-        private string sDefenseFile = @"C:\Users\PeterPiper07\workspace\CSharp\FBDBSolution\defense.htm";
-        private string sScheduleFile = @"C:\Users\PeterPiper07\workspace\CSharp\FBDBSolution\schedule.htm";
+        private TestingProp TestData = new TestingProp();
 
-        #region init tests - local paths
-        /*
-        //[Fact]
+        #region init tests
+        [Fact]
+        // local paths passed - OK
         public void FBDBLibInterface_init_FilesOk()
         {
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = sOffenseFile;
-            oData.Defense = sDefenseFile;
-            oData.Gameday = sScheduleFile;
-
-            // test with local paths OK
-            int iReturn = oPruefling.init(oData);
-            Assert.Equal(iReturn, 0);
-        }
-        */
-
-        [Fact]
-        public void FBDBLibInterface_init_ScheduleFileEmpty()
-        {
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = sOffenseFile;
-            oData.Defense = sDefenseFile;
-            oData.Gameday = @"";
-
-            // test with local paths OK
-            int iReturn = oPruefling.init(oData);
-            Assert.Equal(iReturn, -3);
+            Assert.Equal(0, new FBDBCoreLibInterface().init(getPath("UseFiles")));
         }
 
         [Fact]
-        public void FBDBLibInterface_init_OffenseFilesEmpty()
-        {
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = @"";
-            oData.Defense = sDefenseFile;
-            oData.Gameday = sScheduleFile;
-
-            // test with local paths OK
-            int iReturn = oPruefling.init(oData);
-            Assert.Equal(iReturn, -1);
-        }
-
-        [Fact]
-        public void FBDBLibInterface_init_DefenseFileEmpty()
-        {
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = sOffenseFile;
-            oData.Defense = @"";
-            oData.Gameday = sScheduleFile;
-
-            // test with local paths OK
-            int iReturn = oPruefling.init(oData);
-            Assert.Equal(iReturn, -2);
-        }
-        #endregion
-
-        #region init tests - URL
-        [Fact]
+        // urls passed - ok
         public void FBDBLibInterface_init_URLsOk()
         {
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-            oData.Gameday = @"https://www.footballdb.com/games/index.html";
-            int iSoll = 0;
-            // test with local paths OK
-            int iReturn = oPruefling.init(oData);
-            Assert.Equal(iReturn, iSoll);
+            Assert.Equal(0, new FBDBCoreLibInterface().init(getPath("UseWeb")));
         }
 
         [Fact]
-        public void FBDBLibInterface_init_DefensURLEmpty()
+        // No Schedule Path passed
+        public void FBDBLibInterface_init_ScheduleFileEmpty()
         {
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-            oData.Defense = @"";
-            oData.Gameday = @"https://www.footballdb.com/games/index.html";
-
-            // test with local paths OK
-            int iReturn = oPruefling.init(oData);
-            Assert.Equal(iReturn, -2);
+            try { int iReturn = new FBDBCoreLibInterface().init(getPath("ScheduleEmpty")); }
+            catch (PathException exp) { Assert.Equal(exp.Message, new ExceptionProp().SchedulePath);}
         }
 
         [Fact]
-        public void FBDBLibInterface_init_OffensURLEmpty()
+        // no offense file path passed
+        public void FBDBLibInterface_init_OffenseFilesEmpty()
         {
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = @"";
-            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-            oData.Gameday = @"https://www.footballdb.com/games/index.html";
-
-            // test with local paths OK
-            int iReturn = oPruefling.init(oData);
-            Assert.Equal(iReturn, -1);
+            try { int iReturn = new FBDBCoreLibInterface().init(getPath("OffenseEmpty")); }
+            catch (PathException exp) { Assert.Equal(exp.Message, new ExceptionProp().OffensePath); }
         }
 
         [Fact]
-        public void FBDBLibInterface_init_ScheduleURLEmpty()
+        // no defense file path passed
+        public void FBDBLibInterface_init_DefenseFileEmpty()
         {
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-            oData.Gameday = @"";
-
-            // test with local paths OK
-            int iReturn = oPruefling.init(oData);
-            Assert.Equal(iReturn, -3);
+            try { int iReturn = new FBDBCoreLibInterface().init(getPath("DefenseEmpty")); }
+            catch (PathException exp) { Assert.Equal(exp.Message, new ExceptionProp().DefensePath); }
         }
         #endregion
 
+        #region game tests
+        [Fact]
+        public void FBDBLibInterface_game_OK()
+        {
+            // init Lib Interface
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+            FileProp oData = new FileProp();
+            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+            oData.Gameday = @"https://www.footballdb.com/games/index.html";
+            int iReturn = oPruefling.init(oData);
+
+            int iSoll = 200;
+            GameProp oReturn = oPruefling.getGame("Detroit Lions", "Chicago Bears");
+            int iIst = Convert.ToInt32(oReturn.AwayScore) + Convert.ToInt32(oReturn.HomeScore);
+            Assert.Equal(iIst, iSoll);
+        }
 
 
 
-    #region game tests
-    [Fact]
-    public void FBDBLibInterface_game_OK()
-    {
-        // init Lib Interface
-        FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-        FileProp oData = new FileProp();
-        oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-        oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-        oData.Gameday = @"https://www.footballdb.com/games/index.html";
-        int iReturn = oPruefling.init(oData);
+        [Fact]
+        public void FBDBLibInterface_game_HometeamEmpty()
+        {
+            // init Lib Interface
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+            FileProp oData = new FileProp();
+            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+            oData.Gameday = @"https://www.footballdb.com/games/index.html";
+            int iReturn = oPruefling.init(oData);
 
-        int iSoll = 200;
-        GameProp oReturn = oPruefling.getGame("Detroit Lions", "Chicago Bears");
-        int iIst = Convert.ToInt32(oReturn.AwayScore) + Convert.ToInt32(oReturn.HomeScore);
-        Assert.Equal(iIst, iSoll);
-    }
+            GameProp oIst = oPruefling.getGame("Atlanta Falcons", "");
+            GameProp oSoll = null;
+            Assert.Equal(oIst, oSoll);
+        }
 
-    
+        [Fact]
+        public void FBDBLibInterface_game_AwayteamEmpty()
+        {
+            // init Lib Interface
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+            FileProp oData = new FileProp();
+            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+            oData.Gameday = @"https://www.footballdb.com/games/index.html";
+            int iReturn = oPruefling.init(oData);
 
-    [Fact]
-    public void FBDBLibInterface_game_HometeamEmpty()
-    {
-        // init Lib Interface
-        FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-        FileProp oData = new FileProp();
-        oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-        oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-        oData.Gameday = @"https://www.footballdb.com/games/index.html";
-        int iReturn = oPruefling.init(oData);
-        
-        GameProp oIst = oPruefling.getGame("Atlanta Falcons", ""); 
-        GameProp oSoll = null;
-        Assert.Equal(oIst, oSoll);
-    }
-
-    [Fact]
-    public void FBDBLibInterface_game_AwayteamEmpty()
-    {
-        // init Lib Interface
-        FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-        FileProp oData = new FileProp();
-        oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-        oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-        oData.Gameday = @"https://www.footballdb.com/games/index.html";
-        int iReturn = oPruefling.init(oData);
-
-        GameProp oIst = oPruefling.getGame("", "Atlanta Falcons");
-        GameProp oSoll = null;
-        Assert.Equal(oIst, oSoll);
+            GameProp oIst = oPruefling.getGame("", "Atlanta Falcons");
+            GameProp oSoll = null;
+            Assert.Equal(oIst, oSoll);
 
         }
-    
-    [Fact]
-    public void FBDBLibInterface_game_NoData()
-    {
-        // init Lib Interface
-        FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-        FileProp oData = new FileProp();
-        oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-        oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-        oData.Gameday = @"https://www.footballdb.com/games/index.html";
-        int iReturn = oPruefling.init(oData);
-        
-        GameProp oIst = oPruefling.getGame("", "");
-        GameProp oSoll = null;
-        Assert.Equal(oIst, oSoll);
-    }
-    #endregion
+
+        [Fact]
+        public void FBDBLibInterface_game_NoData()
+        {
+            // init Lib Interface
+            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+            FileProp oData = new FileProp();
+            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+            oData.Gameday = @"https://www.footballdb.com/games/index.html";
+            int iReturn = oPruefling.init(oData);
+
+            GameProp oIst = oPruefling.getGame("", "");
+            GameProp oSoll = null;
+            Assert.Equal(oIst, oSoll);
+        }
+        #endregion
+
+        #region get testdata
+        private FileProp getPath(string sPathType)
+        {
+            FileProp oReturn = new FileProp();
+
+            switch (sPathType)
+            {
+                case "ScheduleEmpty":
+                    oReturn.Offense = TestData.OffenseFile_Local;
+                    oReturn.Defense = TestData.DefenseFile_Local;
+                    break;
+                case "OffenseEmpty":
+                    oReturn.Gameday = TestData.ScheduleFile_Local;
+                    oReturn.Defense = TestData.DefenseFile_Local;
+                    break;
+                case "DefenseEmpty":
+                    oReturn.Offense = TestData.OffenseFile_Local;
+                    oReturn.Gameday = TestData.ScheduleFile_Local;
+                    break;
+
+                case "UseFiles":
+                    oReturn.Offense = TestData.OffenseFile_Local;
+                    oReturn.Defense = TestData.DefenseFile_Local;
+                    oReturn.Gameday = TestData.ScheduleFile_Local;
+                    break;
+
+                case "UseWeb":
+                    oReturn.Offense = TestData.OffenseFile_Web;
+                    oReturn.Defense = TestData.DefenseFile_Web;
+                    oReturn.Gameday = TestData.ScheduleFile_Web;
+                    break;
+
+                default:
+                    break;
+            }
+            
+            return oReturn;
+        }
+        #endregion
     }
 }

@@ -8,6 +8,13 @@ namespace FBDBCoreLib.data
 {
     public class FileProp
     {
+        public FileProp()
+        {
+            sOffenseFile = "";
+            sDefenseFile = "";
+            sGamedayFile = "";
+        }
+
         private string sOffenseFile;
         private string sDefenseFile;
         private string sGamedayFile;

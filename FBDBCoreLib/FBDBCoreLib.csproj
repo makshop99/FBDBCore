@@ -13,5 +13,6 @@
     <Folder Include="data\" />
     <Folder Include="model\" />
     <Folder Include="view\" />
+    <Folder Include="exceptions\" />
   </ItemGroup>
 </Project>

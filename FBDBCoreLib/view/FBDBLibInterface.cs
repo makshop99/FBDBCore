@@ -1,5 +1,6 @@
 ﻿using FBDBCoreLib.controller;
 using FBDBCoreLib.data;
+using FBDBCoreLib.exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,13 +27,16 @@ namespace FBDBCoreLib.view
         public int init(FileProp oData)
         {
             // check data
-            if (oData.Offense.Length < 1) return -1;
-            if (oData.Defense.Length < 1) return -2;
-            if (oData.Gameday.Length < 1) return -3;
+            if (oData.Offense.Length < 1) throw new PathException(new ExceptionProp().OffensePath);
+            if (oData.Defense.Length < 1) throw new PathException(new ExceptionProp().DefensePath);
+            if (oData.Gameday.Length < 1) throw new PathException(new ExceptionProp().SchedulePath);
 
             // init controller
-            oController = new FTDBLibController();            
-            return oController.init(oData);
+            oController = new FTDBLibController();  
+
+            if (oController.init(oData) == -2) throw new RawDataException();
+
+            return 0;
         }
 
         /// <summary>
