@@ -46,7 +46,7 @@ namespace FBDBCoreLib.view
         /// <returns></returns>
         public List<GameProp> getGameDay(string sGameday)
         {
-            if (sGameday.Length <= 0) return null;
+            if (sGameday.Length <= 0) throw new GamedayException();
             return oController.analyzeGameday(sGameday);
         }
 
@@ -58,9 +58,19 @@ namespace FBDBCoreLib.view
         /// <returns></returns>
         public GameProp getGame(string sAwayTeam, string sHomeTeam)
         {
-            if (sHomeTeam.Length <= 0) return null;
-            if (sAwayTeam.Length <= 0) return null;
+            try
+            {
+                if (sHomeTeam.Length <= 0) throw new GameAnalysisExeption();
+                if (sAwayTeam.Length <= 0) throw new GameAnalysisExeption();
+            }
+            catch (Exception) { throw new GameAnalysisExeption(); }
+
             return oController.analyseGame(sAwayTeam,sHomeTeam);
+        }
+
+        public int getMaxPoints()
+        {
+            return oController.getMaxPoint();
         }
     }
 }

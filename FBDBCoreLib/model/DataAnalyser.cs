@@ -74,6 +74,11 @@ namespace FBDBCoreLib.model
 
             return oReturn;
         }
+
+        public int getMaxPoints()
+        {
+            return Convert.ToInt32(iOffenseMax + iDefenseMax);
+        }
         #endregion
 
         #region stats methods

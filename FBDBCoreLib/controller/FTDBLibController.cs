@@ -32,8 +32,6 @@ namespace FBDBCoreLib.controller
         private DataAnalyser oAnalyser = new DataAnalyser();
         #endregion
 
-
-
         #region public interface
 
         /// <summary>
@@ -93,6 +91,11 @@ namespace FBDBCoreLib.controller
         public GameProp analyseGame(string sAwayTeam, string sHomeTeam)
         {                
             return analyseSingleGame(sAwayTeam, sHomeTeam);
+        }
+
+        public int getMaxPoint()
+        {
+            return oAnalyser.getMaxPoints();
         }
         #endregion
 

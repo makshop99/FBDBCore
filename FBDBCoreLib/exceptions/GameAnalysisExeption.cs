@@ -1,7 +1,7 @@
 ﻿using System;
 namespace FBDBCoreLib.exceptions
 {
-    public class GameAnalysisExeption
+    public class GameAnalysisExeption : Exception
     {
         public GameAnalysisExeption()
         {

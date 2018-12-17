@@ -390,7 +390,5 @@ namespace FBDBCoreLib.model
             return lReturn;
         }
 #endregion
-
-
     }
 }

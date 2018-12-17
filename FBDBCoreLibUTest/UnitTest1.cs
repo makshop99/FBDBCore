@@ -18,12 +18,14 @@ namespace FBDBCoreLibUTest
 
 
         #region init tests
+        /*
         [Fact]
         // local paths passed - OK
         public void FBDBLibInterface_init_FilesOk()
         {
             Assert.Equal(0, new FBDBCoreLibInterface().init(getPath("UseFiles")));
         }
+        */
 
         [Fact]
         // urls passed - ok
@@ -59,6 +61,7 @@ namespace FBDBCoreLibUTest
 
         #region game tests
         [Fact]
+        // both teams set correctly
         public void FBDBLibInterface_game_OK()
         {
             try
@@ -77,9 +80,8 @@ namespace FBDBCoreLibUTest
             catch (Exception) { Assert.True(false); }
         }
 
-
-
         [Fact]
+        // hometeam not set
         public void FBDBLibInterface_game_HometeamEmpty()
         {
             try
@@ -97,6 +99,7 @@ namespace FBDBCoreLibUTest
         }
 
         [Fact]
+        // awayteam not set
         public void FBDBLibInterface_game_AwayteamEmpty()
         {
             try
@@ -115,6 +118,7 @@ namespace FBDBCoreLibUTest
         }
 
         [Fact]
+        // both teams not set
         public void FBDBLibInterface_game_NoData()
         {
             try
@@ -130,6 +134,63 @@ namespace FBDBCoreLibUTest
 
             catch (GameAnalysisExeption) { Assert.True(true); }
         }
+
+        //--
+        [Fact]
+        // hometeam is null
+        public void FBDBLibInterface_game_HometeamNull()
+        {
+            try
+            {
+                // init Lib Interface
+                FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+                oPruefling.init(getPath("UseWeb"));
+                string[] aryTeam = getTeams("HometeamNull");
+
+                GameProp oReturn = oPruefling.getGame(aryTeam[0], aryTeam[1]);
+                Assert.True(false);
+            }
+
+            catch (GameAnalysisExeption) { Assert.True(true); }
+        }
+
+        [Fact]
+        // awayteam is null
+        public void FBDBLibInterface_game_AwayteamNull()
+        {
+            try
+            {
+                // init Lib Interface
+                FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+                oPruefling.init(getPath("UseWeb"));
+                string[] aryTeam = getTeams("AwayteamNull");
+
+                GameProp oReturn = oPruefling.getGame(aryTeam[0], aryTeam[1]);
+                Assert.True(false);
+            }
+
+            catch (GameAnalysisExeption) { Assert.True(true); }
+
+        }
+
+        [Fact]
+        // both teams are null
+        public void FBDBLibInterface_game_Null()
+        {
+            try
+            {
+                // init Lib Interface
+                FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+                oPruefling.init(getPath("UseWeb"));
+                string[] aryTeam = getTeams("allNull");
+
+                GameProp oReturn = oPruefling.getGame(aryTeam[0], aryTeam[1]);
+                Assert.True(false);
+            }
+
+            catch (GameAnalysisExeption) { Assert.True(true); }
+        }
+
         #endregion
 
         #region get testdata
@@ -180,6 +241,7 @@ namespace FBDBCoreLibUTest
                     aryReturn[0] = "Detroit Lions";
                     aryReturn[1] = "Chicago Bears";
                     break;
+
                 case "HometeamEmpty":
                     aryReturn[0] = "";
                     aryReturn[1] = "Chicago Bears";
@@ -193,7 +255,18 @@ namespace FBDBCoreLibUTest
                     aryReturn[1] = "";
                     break;
 
-
+                case "HometeamNull":
+                    aryReturn[0] = null;
+                    aryReturn[1] = "Chicago Bears";
+                    break;
+                case "AwayteamNull":
+                    aryReturn[0] = "Detroit Lions";
+                    aryReturn[1] = null;
+                    break;
+                case "allNull":
+                    aryReturn[0] = null;
+                    aryReturn[1] = null;
+                    break;
 
 
                 default:
