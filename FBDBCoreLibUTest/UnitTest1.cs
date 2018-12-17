@@ -10,6 +10,13 @@ namespace FBDBCoreLibUTest
     {
         private TestingProp TestData = new TestingProp();
 
+        // missing test cases
+            // using local files - how to set the paths from outside
+            // one or both teams have the value of null
+            // one or both teams have invalid names like "Chicago Bulls"
+            // gameday analysis is missing 
+
+
         #region init tests
         [Fact]
         // local paths passed - OK
@@ -54,18 +61,20 @@ namespace FBDBCoreLibUTest
         [Fact]
         public void FBDBLibInterface_game_OK()
         {
-            // init Lib Interface
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-            oData.Gameday = @"https://www.footballdb.com/games/index.html";
-            int iReturn = oPruefling.init(oData);
+            try
+            {
+                // init Lib Interface
+                FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+                oPruefling.init(getPath("UseWeb"));
 
-            int iSoll = 200;
-            GameProp oReturn = oPruefling.getGame("Detroit Lions", "Chicago Bears");
-            int iIst = Convert.ToInt32(oReturn.AwayScore) + Convert.ToInt32(oReturn.HomeScore);
-            Assert.Equal(iIst, iSoll);
+                string[] aryTeam = getTeams("allOK");
+
+                GameProp oReturn = oPruefling.getGame(aryTeam[0], aryTeam[1]);
+                int iIst = Convert.ToInt32(oReturn.AwayScore) + Convert.ToInt32(oReturn.HomeScore);
+                Assert.Equal(iIst, oPruefling.getMaxPoints());
+            }
+
+            catch (Exception) { Assert.True(false); }
         }
 
 
@@ -73,50 +82,53 @@ namespace FBDBCoreLibUTest
         [Fact]
         public void FBDBLibInterface_game_HometeamEmpty()
         {
-            // init Lib Interface
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-            oData.Gameday = @"https://www.footballdb.com/games/index.html";
-            int iReturn = oPruefling.init(oData);
+            try
+            {
+                // init Lib Interface
+                FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+                oPruefling.init(getPath("UseWeb"));
+                string[] aryTeam = getTeams("HometeamEmpty");
 
-            GameProp oIst = oPruefling.getGame("Atlanta Falcons", "");
-            GameProp oSoll = null;
-            Assert.Equal(oIst, oSoll);
+                GameProp oReturn = oPruefling.getGame(aryTeam[0], aryTeam[1]);
+                Assert.True(false);
+            }
+
+            catch (GameAnalysisExeption) { Assert.True(true); }
         }
 
         [Fact]
         public void FBDBLibInterface_game_AwayteamEmpty()
         {
-            // init Lib Interface
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-            oData.Gameday = @"https://www.footballdb.com/games/index.html";
-            int iReturn = oPruefling.init(oData);
+            try
+            {
+                // init Lib Interface
+                FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+                oPruefling.init(getPath("UseWeb"));
+                string[] aryTeam = getTeams("AwayteamEmpty");
 
-            GameProp oIst = oPruefling.getGame("", "Atlanta Falcons");
-            GameProp oSoll = null;
-            Assert.Equal(oIst, oSoll);
+                GameProp oReturn = oPruefling.getGame(aryTeam[0], aryTeam[1]);
+                Assert.True(false);
+            }
+
+            catch (GameAnalysisExeption) { Assert.True(true); }
 
         }
 
         [Fact]
         public void FBDBLibInterface_game_NoData()
         {
-            // init Lib Interface
-            FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
-            FileProp oData = new FileProp();
-            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-            oData.Gameday = @"https://www.footballdb.com/games/index.html";
-            int iReturn = oPruefling.init(oData);
+            try
+            {
+                // init Lib Interface
+                FBDBCoreLibInterface oPruefling = new FBDBCoreLibInterface();
+                oPruefling.init(getPath("UseWeb"));
+                string[] aryTeam = getTeams("allnOK");
 
-            GameProp oIst = oPruefling.getGame("", "");
-            GameProp oSoll = null;
-            Assert.Equal(oIst, oSoll);
+                GameProp oReturn = oPruefling.getGame(aryTeam[0], aryTeam[1]);
+                Assert.True(false);
+            }
+
+            catch (GameAnalysisExeption) { Assert.True(true); }
         }
         #endregion
 
@@ -157,6 +169,38 @@ namespace FBDBCoreLibUTest
             }
             
             return oReturn;
+        }
+
+        private string[] getTeams(string TestCase)
+        {
+            string[] aryReturn = new string[2];
+            switch (TestCase)
+            {
+                case "allOK":
+                    aryReturn[0] = "Detroit Lions";
+                    aryReturn[1] = "Chicago Bears";
+                    break;
+                case "HometeamEmpty":
+                    aryReturn[0] = "";
+                    aryReturn[1] = "Chicago Bears";
+                    break;
+                case "AwayteamEmpty":
+                    aryReturn[0] = "Detroit Lions";
+                    aryReturn[1] = "";
+                    break;
+                case "allnOK":
+                    aryReturn[0] = "";
+                    aryReturn[1] = "";
+                    break;
+
+
+
+
+                default:
+                    return null;
+            }
+
+            return aryReturn;
         }
         #endregion
     }
