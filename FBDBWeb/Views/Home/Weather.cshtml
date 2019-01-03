@@ -1,0 +1,102 @@
+﻿@{
+    string sDummy = ViewData["TestString"] as string;
+    Hashtable oData = new Hashtable();
+    oData = ViewData["TeamWeather"] as Hashtable;
+
+}
+
+<div id="AFC">
+    AFC
+
+    <div id="AFCEast">
+        <h2>East</h2>
+        <table>
+            <tr><th>Team</th><th>Tmp.</th></tr>
+            <tr><td>New England Patriots</td><td>@oData["New England Patriots"].ToString()°C</td></tr>
+            <tr><td>New York Jets</td><td>@oData["New York Jets"].ToString()°C</td></tr>
+            <tr><td>Miami Dolphins</td><td>@oData["Miami Dolphins"].ToString()°C</td></tr>
+            <tr><td>Buffalo Bills</td><td>@oData["Buffalo Bills"].ToString()°C</td></tr>
+        </table>
+    </div>
+
+    <div id="AFCNorth">
+        <h2>North</h2>
+        <table>
+            <tr><th>Team</th><th>Tmp.</th></tr>
+            <tr><td>Pittsburgh Steelers</td><td>@oData["Pittsburgh Steelers"].ToString()°C</td></tr>
+            <tr><td>Baltimore Ravens</td><td>@oData["Baltimore Ravens"].ToString()°C</td></tr>
+            <tr><td>Cincinnati Bengals</td><td>@oData["Cincinnati Bengals"].ToString()°C</td></tr>
+            <tr><td>Cleveland Browns</td><td>@oData["Cleveland Browns"].ToString()°C</td></tr>
+        </table>
+    </div>
+
+    <div id="AFCSouth">
+        <h2>South</h2>
+        <table>
+            <tr><th>Team</th><th>Tmp.</th></tr>
+            <tr><td>Houston Texans</td><td>@oData["Houston Texans"].ToString()°C</td></tr>
+            <tr><td>Indianapolis Colts</td><td>@oData["Indianapolis Colts"].ToString()°C</td></tr>
+            <tr><td>Jacksonville Jaguars</td><td>@oData["Jacksonville Jaguars"].ToString()°C</td></tr>
+            <tr><td>Tennessee Titans</td><td>@oData["Tennessee Titans"].ToString()°C</td></tr>
+        </table>
+    </div>
+
+    <div id="AFCWest">
+        <h2>North</h2>
+        <table>
+            <tr><th>Team</th><th>Tmp.</th></tr>
+            <tr><td>Denver Broncos</td><td>@oData["Denver Broncos"].ToString()°C</td></tr>
+            <tr><td>Kansas City Chiefs</td><td>@oData["Kansas City Chiefs"].ToString()°C</td></tr>
+            <tr><td>Los Angeles Chargers</td><td>@oData["Los Angeles Chargers"].ToString()°C</td></tr>
+            <tr><td>Oakland Raiders</td><td>@oData["Oakland Raiders"].ToString()°C</td></tr>
+        </table>
+    </div>
+</div>
+
+
+<div id="NFC">
+    NFC
+
+    <div id="NFCEast">
+        <h2>East</h2>
+        <table>
+            <tr><td>Dallas Cowboys</td><td>@oData["Dallas Cowboys"].ToString()°C</td></tr>
+            <tr><td>New York Giants</td><td>@oData["New York Giants"].ToString()°C</td></tr>
+            <tr><td>Philadelphia Eagles</td><td>@oData["Philadelphia Eagles"].ToString()°C</td></tr>
+            <tr><td>Washington Redskins</td><td>@oData["Washington Redskins"].ToString()°C</td></tr>
+        </table>
+    </div>
+
+    <div id="NFCNorth">
+        <h2>North</h2>
+        <table>
+            <tr><th>Team</th><th>Tmp.</th></tr>
+            <tr><td>Chicago Bears</td><td>@oData["Chicago Bears"].ToString()°C</td></tr>
+            <tr><td>Detroit Lions</td><td>@oData["Detroit Lions"].ToString()°C</td></tr>
+            <tr><td>Green Bay Packers</td><td>@oData["Green Bay Packers"].ToString()°C</td></tr>
+            <tr><td>Minnesota Vikings</td><td>@oData["Minnesota Vikings"].ToString()°C</td></tr>
+
+        </table>
+    </div>
+
+    <div id="NFCSouth">
+        <h2>South</h2>
+        <table>
+            <tr><td>Atlanta Falcons</td><td>@oData["Atlanta Falcons"].ToString()°C</td></tr>
+            <tr><td>Carolina Panthers</td><td>@oData["Carolina Panthers"].ToString()°C</td></tr>
+            <tr><td>New Orleans Saints</td><td>@oData["New Orleans Saints"].ToString()°C</td></tr>
+            <tr><td>Tampa Bay Bucs</td><td>@oData["Tampa Bay Buccaneers"].ToString()°C</td></tr>
+        </table>
+    </div>
+
+    <div id="NFCWest">
+        <h2>North</h2>
+        <table>
+            <tr><td>Arizona Cardinals</td><td>@oData["Arizona Cardinals"].ToString()°C</td></tr>
+            <tr><td>San Francisco 49ers</td><td>@oData["San Francisco 49ers"].ToString()°C</td></tr>
+            <tr><td>Seattle Seahawks</td><td>@oData["Seattle Seahawks"].ToString()°C</td></tr>
+            <tr><td>Los Angeles Rams</td><td>@oData["Los Angeles Rams"].ToString()°C</td></tr>
+        </table>
+    </div>
+
+</div>

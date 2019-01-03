@@ -10,9 +10,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="controller\" />
-    <Folder Include="data\" />
-    <Folder Include="model\" />
     <Folder Include="view\" />
-    <Folder Include="exceptions\" />
+    <Folder Include="weather\" />
+    <Folder Include="weather\data\" />
+    <Folder Include="weather\model\" />
+    <Folder Include="weather\exceptions\" />
+    <Folder Include="teamstats\" />
+    <Folder Include="teamstats\model\" />
+    <Folder Include="teamstats\exceptions\" />
+    <Folder Include="teamstats\data\" />
   </ItemGroup>
 </Project>

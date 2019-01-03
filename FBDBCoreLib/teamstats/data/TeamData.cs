@@ -9,11 +9,15 @@ namespace FBDBCoreLib.code.data
     /// <summary>
     /// this class includes all stats data for a nfl team
     /// </summary>
+    /// <changes>
+    /// 21/12/18 - added attributes for the cities waether
+    /// </changes>
     public class TeamData
     {
         #region fields
         private String sTeamName;
 
+        // offensive stats
         private String iOffensePntG;
         private String iOffenseRshG;
         private String iOffensePssG;
@@ -24,6 +28,7 @@ namespace FBDBCoreLib.code.data
         private String iOffenseYrdG;
         private String iOffenseGms;
 
+        // defensive stats
         private String iDefensePntG;
         private String iDefenseRshG;
         private String iDefensePssG;
@@ -33,6 +38,7 @@ namespace FBDBCoreLib.code.data
         private String iDefenseYrd;
         private String iDefenseYrdG;
         private String iDefenseGms;
+
         #endregion
 
         #region encapsulates

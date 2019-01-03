@@ -24,6 +24,22 @@ th
     text-align: left;
 }
 
+
+#HeaderArea1 {
+    BACKGROUND-COLOR: #010101;
+    BORDER-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    BORDER-LEFT: 0px;
+    BORDER-BOTTOM: 0px;
+    POSITION: absolute;
+    LEFT: 0px;
+    TOP: 50px;
+    WIDTH: 100%;
+    HEIGHT: 30px;
+}
+
+
+
 #HeaderArea {
     BACKGROUND-COLOR: #010101;
     BORDER-RIGHT: 0px;
@@ -72,7 +88,9 @@ th
 }
 
 
-#navigation {
+
+#navigation 
+{
     background: #e6e6e6;
     BORDER-RIGHT: 0px;
     BORDER-TOP: 0px;
@@ -130,7 +148,8 @@ h3 {
     padding: 1px;
 }
 
-#mainArea {
+#mainArea 
+{
     POSITION: absolute;
     background: #ffffff;
     LEFT: 190px;
@@ -141,3 +160,129 @@ h3 {
     background: #fffbf0
 }
 
+
+
+#AFC {
+    font: 20px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 36px;
+    letter-spacing: .21em;
+
+    background: #6495ED;
+    BORDER-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    BORDER-LEFT: 0px;
+    BORDER-BOTTOM: 0px;
+    POSITION: absolute;
+    LEFT: 10px;
+    TOP: 12px;
+    WIDTH: 300px;
+    HEIGHT: 650px;
+}
+
+#AFCEast 
+{
+    font: 11px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 10px;
+    POSITION: absolute;
+    LEFT: 10px;
+    TOP: 10px;
+    WIDTH: 100%;
+    HEIGHT: 20%;
+}
+
+#AFCNorth {
+    font: 11px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 10px;
+    POSITION: absolute;
+    LEFT: 10px;
+    TOP: 160px;
+    WIDTH: 100%;
+    HEIGHT: 20%;
+}
+
+#AFCSouth {
+    font: 11px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 10px;
+    POSITION: absolute;
+    LEFT: 10px;
+    TOP: 310px;
+    WIDTH: 100%;
+    HEIGHT: 20%;
+}
+
+#AFCWest {
+    font: 11px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 10px;
+    POSITION: absolute;
+    LEFT: 10px;
+    TOP: 460px;
+    WIDTH: 100%;
+    HEIGHT: 20%;
+}
+
+
+#NFC {
+    font: 20px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 36px;
+    letter-spacing: .21em;
+    background: #D2691E;
+    BORDER-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    BORDER-LEFT: 0px;
+    BORDER-BOTTOM: 0px;
+    POSITION: absolute;
+    LEFT: 320px;
+    TOP: 12px;
+    WIDTH: 300px;
+    HEIGHT: 650px;
+}
+
+#NFCEast {
+    font: 11px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 10px;
+    POSITION: absolute;
+    LEFT: 10px;
+    TOP: 10px;
+    WIDTH: 100%;
+    HEIGHT: 20%;
+}
+
+#NFCNorth {
+    font: 11px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 10px;
+    POSITION: absolute;
+    LEFT: 10px;
+    TOP: 160px;
+    WIDTH: 100%;
+    HEIGHT: 20%;
+}
+
+#NFCSouth {
+    font: 11px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 10px;
+    POSITION: absolute;
+    LEFT: 10px;
+    TOP: 310px;
+    WIDTH: 100%;
+    HEIGHT: 20%;
+}
+
+#NFCWest {
+    font: 11px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 10px;
+    POSITION: absolute;
+    LEFT: 10px;
+    TOP: 460px;
+    WIDTH: 100%;
+    HEIGHT: 20%;
+}

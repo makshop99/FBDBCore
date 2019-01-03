@@ -5,13 +5,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FBDBWeb.Models;
+using FBDBCoreLib.weather.data;
+using System.Collections;
 
 namespace FBDBWeb.Controllers
 {
     public class HomeController : Controller
     {
+        private static WebModel oModel = new WebModel();
         public IActionResult Index()
         {
+            // initialisierung des models
             return View();
         }
 
@@ -25,7 +29,6 @@ namespace FBDBWeb.Controllers
         public IActionResult GameResult(string HomeTeam, string AwayTeam)
         {
             // Daten aus dem Request lesen
-            WebModel oModel = new WebModel();
             ViewData["Result"] = oModel.analyseGame(AwayTeam, HomeTeam);
 
             return View();
@@ -40,7 +43,6 @@ namespace FBDBWeb.Controllers
 
         public IActionResult GamedayResult (string Gameday)
         {
-            WebModel oModel = new WebModel();
             ViewData["Result"] = oModel.analyseGameday(Gameday);
             return View();
         }
@@ -53,6 +55,15 @@ namespace FBDBWeb.Controllers
 
         public IActionResult Links()
         {
+            return View();
+        }
+
+        public IActionResult Weather()
+        {
+            Hashtable oData = oModel.getWeather();
+            ViewData["TeamWeather"] = oData;
+            ViewData["TestString"] = "Hello";
+
             return View();
         }
 

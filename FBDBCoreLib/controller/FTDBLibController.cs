@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FBDBCoreLib.model.weather;
+using FBDBCoreLib.weather.data;
+using FBDBCoreLib.weather.model;
 
 namespace FBDBCoreLib.controller
 {
@@ -97,6 +100,19 @@ namespace FBDBCoreLib.controller
         {
             return oAnalyser.getMaxPoints();
         }
+
+        public WeatherProp readWeather(string sCityId)
+        {
+            string sURL = @"http://api.openweathermap.org/data/2.5/weather";
+            string sKey = "3baf3e928e678e3677196c25f8538e6f";
+            WeatherDataReader oData = new WeatherDataReader(sURL, sKey);
+
+            // read raw data
+            string sRawData = oData.readWeather(sCityId);
+            WeatherProp oReturn = new WeatherDataAnalyser().getWeatherData(sRawData, sCityId);
+            return oReturn;
+        }
+
         #endregion
 
         #region data validation
