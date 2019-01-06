@@ -15,6 +15,7 @@ namespace FBDBCoreLib.view
     public class FBDBCoreLibInterface
     {
         private FTDBLibController oController;
+        private Hashtable oWeatherData;
 
         /// <summary>
         /// this method takes init data and initializes the class
@@ -37,6 +38,8 @@ namespace FBDBCoreLib.view
             oController = new FTDBLibController();  
 
             if (oController.init(oData) == -2) throw new RawDataException();
+
+            initWeather();
 
             return 0;
         }
@@ -79,13 +82,15 @@ namespace FBDBCoreLib.view
             return oController.getMaxPoint();
         }
 
+
         /// <summary>
         /// this method reads out the weather for all 32 nfl teams
         /// </summary>
         /// <returns>List of WeatherProp Objects</returns>
-        public Hashtable getWeather()
+        private void initWeather()
         {
-            Hashtable oReturn = new Hashtable();
+            oWeatherData = new Hashtable();
+
             string[] oData = new string[32];
             oData[0] = "Arizona Cardinals";
             oData[1] = "Atlanta Falcons";
@@ -125,9 +130,18 @@ namespace FBDBCoreLib.view
             {
                 string sCode = new WeatherCodes().getCityId(sCity);
                 WeatherProp oWeather = oController.readWeather(sCode);
-                oReturn.Add(sCity, oWeather.Temp);
+                oWeatherData.Add(sCity, oWeather.Temp);
             }
-            return oReturn;
+        }
+
+
+        /// <summary>
+        /// this method reads out the weather for all 32 nfl teams
+        /// </summary>
+        /// <returns>List of WeatherProp Objects</returns>
+        public Hashtable getWeather()
+        {
+            return oWeatherData;;
         }
     }
 }

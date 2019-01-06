@@ -35,7 +35,7 @@ namespace FBDBWeb.Models
 
         public Hashtable getWeather()
         {
-            return new FBDBCoreLibInterface().getWeather();
+            return oModel.getWeather();
         }
 
         private string createGameOutput(GameProp oData)

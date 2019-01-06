@@ -16,6 +16,7 @@ namespace FBDBWeb.Controllers
         public IActionResult Index()
         {
             // initialisierung des models
+
             return View();
         }
 
